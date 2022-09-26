@@ -24,13 +24,13 @@ public class ActivityController {
         return activityService.getAllActivities();
     }
     //Create a method that returns a single activity
-    @GetMapping("find{id}")
+    @GetMapping("/activity/{id}")
     public ResponseEntity<Activity> getActivityById(@PathVariable("id") Long id){
         Activity activity = activityService.getActivityById(id);
         return new ResponseEntity<>(activity, HttpStatus.OK);
     }
     //Create a activity
-    @PostMapping("/addActivity")
+    @PostMapping("/activity")
     public ResponseEntity<Activity> createActivity(Activity activity){
         Activity newActivity = activityService.createActivity(activity);
         return new ResponseEntity<>(newActivity, HttpStatus.CREATED);
@@ -44,7 +44,7 @@ public class ActivityController {
 
 
     //delete a activity
-    @DeleteMapping("/deleteActivity{id}")
+    @DeleteMapping("/activity/{id}")
     public ResponseEntity<?> deleteActivity(@PathVariable("id") Long id){
         activityService.deleteActivity(id);
         return new ResponseEntity<>(HttpStatus.OK);

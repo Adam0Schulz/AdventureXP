@@ -31,7 +31,7 @@ public class ActivityController {
     }
     //Create a activity
     @PostMapping("/activity")
-    public ResponseEntity<Activity> createActivity(Activity activity){
+    public ResponseEntity<Activity> createActivity(@RequestBody Activity activity){
         Activity newActivity = activityService.createActivity(activity);
         return new ResponseEntity<>(newActivity, HttpStatus.CREATED);
     }

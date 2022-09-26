@@ -36,4 +36,14 @@ public class ActivityService {
         Long count = activityRepo.countById(id);
         activityRepo.deleteById(id);
     }
+
+    public Activity updateActivity(Long id, Activity newActivity) {
+        Activity activity = activityRepo.findById(id).get();
+
+        activity.setId(newActivity.getId());
+        activity.setName(newActivity.getName());
+        activity.setDescription(newActivity.getDescription());
+
+        return activityRepo.save(activity);
+    }
 }

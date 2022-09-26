@@ -25,7 +25,7 @@ public class ActivityController {
     }
     //Create a method that returns a single activity
     @GetMapping("find{id}")
-    public ResponseEntity<Activity> getActivityById(@PathVariable("id") int id){
+    public ResponseEntity<Activity> getActivityById(@PathVariable("id") Long id){
         Activity activity = activityService.getActivityById(id);
         return new ResponseEntity<>(activity, HttpStatus.OK);
     }
@@ -35,15 +35,17 @@ public class ActivityController {
         Activity newActivity = activityService.createActivity(activity);
         return new ResponseEntity<>(newActivity, HttpStatus.CREATED);
     }
-    //update a activity
-    @PutMapping("/updateActivity")
+    //update a activity - we will do it later with javaScript
+   /* @PutMapping("/updateActivity")
     public ResponseEntity<Activity> updateActivity(Activity activity){
         Activity updateActivity = activityService.updateActivity(activity);
         return new ResponseEntity<>(updateActivity, HttpStatus.OK);
-    }
+    }*/
+
+
     //delete a activity
     @DeleteMapping("/deleteActivity{id}")
-    public ResponseEntity<?> deleteActivity(@PathVariable("id") int id){
+    public ResponseEntity<?> deleteActivity(@PathVariable("id") Long id){
         activityService.deleteActivity(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

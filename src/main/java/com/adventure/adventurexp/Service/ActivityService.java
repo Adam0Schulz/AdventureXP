@@ -24,7 +24,7 @@ public class ActivityService {
         return activityList;
     }
 
-    public Activity getActivityById(Integer id) {
+    public Activity getActivityById(Long id) {
         return activityRepo.findById(id).get();
     }
 
@@ -32,8 +32,8 @@ public class ActivityService {
         return activityRepo.save(activity);
     }
 
-    public void deleteActivity(Integer id) {
-        Integer count = activityRepo.countById(id);
+    public void deleteActivity(Long id) {
+        Long count = activityRepo.countById(id);
         activityRepo.deleteById(id);
     }
 }

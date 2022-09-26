@@ -19,5 +19,10 @@ public class InitialData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Activity goKart = new Activity("Gokart","It's a funny activity");
         activityRepository.save(goKart);
+
+        Activity miniGolf = new Activity("Mini Golf","It's a very funny activity");
+        activityRepository.save(miniGolf);
+        Activity miniGolf3 = new Activity("Mini Golf","It's a very funny activity");
+        activityRepository.save(miniGolf3);
     }
 }

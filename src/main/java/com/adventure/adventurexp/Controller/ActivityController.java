@@ -35,12 +35,12 @@ public class ActivityController {
         Activity newActivity = activityService.createActivity(activity);
         return new ResponseEntity<>(newActivity, HttpStatus.CREATED);
     }
-    //update a activity - we will do it later with javaScript
-   /* @PutMapping("/updateActivity")
-    public ResponseEntity<Activity> updateActivity(Activity activity){
-        Activity updateActivity = activityService.updateActivity(activity);
-        return new ResponseEntity<>(updateActivity, HttpStatus.OK);
-    }*/
+    //update an activity
+    @PostMapping("/edit/{userId}")
+    public Activity updateCustomer(@RequestBody Activity newCustomer, @PathVariable final Long userId)
+    {
+        return activityService.updateActivity(userId, newCustomer);
+    }
 
 
     //delete a activity

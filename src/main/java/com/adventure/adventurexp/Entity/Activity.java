@@ -23,7 +23,7 @@ public class Activity {
         @Column
         private String name;
 
-        @Column
+        @Column(length = 6000)
         private String description;
 
         public Activity(String name, String description){

@@ -43,18 +43,20 @@ class AdventureXpApplicationTests {
         activityRepository.delete(sumoWrestling);
     }
 
-        @Test
-        void deleteByIdActivity(){
-        Activity sumoWrestling = new Activity(3L,"Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
-        activityRepository.save(sumoWrestling);
-        activityRepository.deleteById(3L);
-    }
+
 
     @Test
    void findByIdActivity(){
-        Activity sumoWrestling = new Activity(2L,"Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
+        Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
         activityRepository.save(sumoWrestling);
-         activityRepository.findById(2L);
+         activityRepository.findById(1l);
+    }
+
+    @Test
+    void deleteByIdActivity(){
+        Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
+        activityRepository.save(sumoWrestling);
+        activityRepository.deleteById(3L);
     }
 
 

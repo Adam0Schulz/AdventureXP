@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,12 +22,11 @@ public class Activity {
         @Column
         private String name;
 
-        @Column
+        @Column(length = 6000)
         private String description;
 
         public Activity(String name, String description){
             this.name=name;
             this.description=description;
-
         }
 }

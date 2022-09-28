@@ -18,8 +18,7 @@ public class ActivityService {
         this.activityRepo = activityRepo;
     }
 
-    public List<Activity> getAllActivities ()
-    {
+    public List<Activity> getAllActivities() {
         List<Activity> activityList = activityRepo.findAll();
         return activityList;
     }

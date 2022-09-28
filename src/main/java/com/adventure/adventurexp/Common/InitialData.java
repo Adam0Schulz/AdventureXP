@@ -1,6 +1,5 @@
 package com.adventure.adventurexp.Common;
 
-
 import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Repository.ActivityRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -23,12 +22,12 @@ public class InitialData implements CommandLineRunner {
         Activity paintBall = new Activity("Paintball","Two teams will go against each other. THe purpose is to shoot the opposing team with paint balls until only members from one team is left. Age limit: 18+.");
         Activity beachVolleyball = new Activity("Beach Volleyball", "The participants play in teams of two on a sanded volleyball court with a net dividing them. The objective is to send the ball over the net and to hit the opposite teams sand floor. Each team has a max of three touches before the ball must be send over the net. A set is won by the first team to reach 21 points (15 points in the deciding final set) with a two-point advantage. A match is won by whoever wins two sets. Age limit 8+ ");
         Activity drivingRangeGolf = new Activity("Driving Range Golf", "The participants will rent a tee and a bucket off balls.  This activity can be used for golfers that want to practice their golf swings, or it can be used as a game where participants can shoot for specific targets on the golf course and compete to see who gets the most points. Age limit: 8+ ");
+
         activityRepository.save(goKart);
         activityRepository.save(sumoWrestling);
         activityRepository.save(miniGolf);
         activityRepository.save(paintBall);
         activityRepository.save(beachVolleyball);
         activityRepository.save(drivingRangeGolf);
-
     }
 }

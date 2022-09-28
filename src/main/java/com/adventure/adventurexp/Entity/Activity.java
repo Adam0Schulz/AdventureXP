@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,6 +28,5 @@ public class Activity {
         public Activity(String name, String description){
             this.name=name;
             this.description=description;
-
         }
 }

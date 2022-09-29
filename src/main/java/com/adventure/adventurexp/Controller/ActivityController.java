@@ -43,9 +43,9 @@ public class ActivityController {
 
     //Update an activity
     @PostMapping("/edit/{userId}")
-    public Activity updateCustomer(@RequestBody Activity newCustomer, @PathVariable final Long userId)
+    public Activity updateActivity(@RequestBody Activity newActivity, @PathVariable final Long userId)
     {
-        return activityService.updateActivity(userId, newCustomer);
+        return activityService.updateActivity(userId, newActivity);
     }
 
     //Delete an activity

@@ -42,7 +42,7 @@ public class ActivityController {
     }
 
     //Update an activity
-    @PutMapping("/edit/{userId}")
+    @PutMapping("/edits/{userId}")
     public Activity updateActivity(@RequestBody Activity newActivity, @PathVariable("userId") Long userId) {
         if (newActivity != null){
             newActivity.setName(newActivity.getName());

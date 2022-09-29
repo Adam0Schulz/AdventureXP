@@ -24,30 +24,35 @@ class AdventureXpApplicationTests {
 
     @Test
     void addActivity() {
-        Activity goKart = new Activity("Gokart","In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.");
+        Activity goKart = new Activity("Gokart", "In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.");
         Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
         activityRepository.save(goKart);
         activityRepository.save(sumoWrestling);
     }
 
     @Test
-    void deleteActivity(){
+    void deleteActivity() {
         Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
         activityRepository.save(sumoWrestling);
         activityRepository.delete(sumoWrestling);
     }
 
     @Test
-   void findByIdActivity(){
+    void findByIdActivity() {
         Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
         activityRepository.save(sumoWrestling);
-         activityRepository.findById(1l);
+        activityRepository.findById(1l);
     }
 
     @Test
-    void deleteByIdActivity(){
+    void deleteByIdActivity() {
         Activity sumoWrestling = new Activity("Sumo Wrestling", "The participants will wear an inflatable sumo suit and wrestle each other. The purpose is to push the opponent outside of the wrestling ring. Age limit: 11+. ");
         activityRepository.save(sumoWrestling);
-        activityRepository.deleteById(3l);
+        activityRepository.deleteById(3L);
+    }
+
+    @Test
+    void getActivityId() {
+        Activity activity = activityRepository.findById(1L).orElse(null);
     }
 }

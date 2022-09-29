@@ -2,6 +2,7 @@ package com.adventure.adventurexp.Service;
 
 import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Repository.ActivityRepository;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class ActivityService {
     }
 
     public Activity getActivityById(Long id) {
-        return activityRepo.findById(id).get();
+        return activityRepo.findById(id).orElse(null);
     }
 
     public Activity createActivity(Activity activity) {
@@ -36,13 +37,11 @@ public class ActivityService {
         activityRepo.deleteById(id);
     }
 
+
     public Activity updateActivity(Long id, Activity newActivity) {
-        Activity activity = activityRepo.findById(id).get();
-
-        activity.setId(newActivity.getId());
-        activity.setName(newActivity.getName());
-        activity.setDescription(newActivity.getDescription());
-
-        return activityRepo.save(activity);
+        if (activityRepo.findById(id).isEmpty()) {
+            return null;
+        }
+        return activityRepo.save(newActivity);
     }
 }

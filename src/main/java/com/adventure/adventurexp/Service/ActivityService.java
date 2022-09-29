@@ -32,7 +32,6 @@ public class ActivityService {
     }
 
     public void deleteActivity(Long id) {
-        Long count = activityRepo.countById(id);
         activityRepo.deleteById(id);
     }
 

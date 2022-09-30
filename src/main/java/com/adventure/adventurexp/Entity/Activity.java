@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
+@Table(name = "activty")
 public class Activity {
 
         @Id

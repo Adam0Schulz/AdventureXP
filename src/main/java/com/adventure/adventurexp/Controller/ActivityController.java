@@ -42,17 +42,9 @@ public class ActivityController {
     }
 
     //Update an activity
-    @PutMapping("/edits/{userId}")
-    public Activity updateActivity(@RequestBody Activity newActivity, @PathVariable("userId") Long userId) {
-        if (newActivity != null){
-            newActivity.setName(newActivity.getName());
-            newActivity.setDescription(newActivity.getDescription());
-
-            activityService.createActivity(newActivity);
-
-
-        }
-        return activityService.createActivity(newActivity);
+    @PutMapping("/activities/{id}")
+    public ResponseEntity<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable("id") Long id) {
+        return new ResponseEntity<Activity>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
     }
 
     //Delete an activity

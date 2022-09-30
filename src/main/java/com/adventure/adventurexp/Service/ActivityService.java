@@ -36,12 +36,10 @@ public class ActivityService {
     }
 
     public Activity updateActivity(Long id, Activity newActivity) {
-        Activity activity = activityRepo.findById(id).get();
+        if(activityRepo.findById(id).isEmpty()) {
+            return null;
+        }
 
-        activity.setId(newActivity.getId());
-        activity.setName(newActivity.getName());
-        activity.setDescription(newActivity.getDescription());
-
-        return activityRepo.save(activity);
+        return activityRepo.save(newActivity);
     }
 }

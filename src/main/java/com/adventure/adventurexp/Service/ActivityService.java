@@ -19,12 +19,11 @@ public class ActivityService {
     }
 
     public List<Activity> getAllActivities() {
-        List<Activity> activityList = activityRepo.findAll();
-        return activityList;
+        return activityRepo.findAll();
     }
 
     public Activity getActivityById(Long id) {
-        return activityRepo.findById(id).get();
+        return activityRepo.findById(id).orElse(null);
     }
 
     public Activity createActivity(Activity activity) {

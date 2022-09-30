@@ -42,10 +42,9 @@ public class ActivityController {
     }
 
     //Update an activity
-    @PostMapping("/edits/{userId}")
-    public Activity updateCustomer(@RequestBody Activity newCustomer, @PathVariable final Long userId)
-    {
-        return activityService.updateActivity(userId, newCustomer);
+    @PutMapping("/activities/{id}")
+    public ResponseEntity<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable("id") Long id) {
+        return new ResponseEntity<Activity>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
     }
 
     //Delete an activity

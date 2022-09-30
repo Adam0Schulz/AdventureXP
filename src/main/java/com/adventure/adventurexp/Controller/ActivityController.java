@@ -41,11 +41,14 @@ public class ActivityController {
         return new ResponseEntity<>(newActivity, HttpStatus.CREATED);
     }
 
-    //Update an activity
-    @PutMapping("/activities/{id}")
-    public ResponseEntity<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable("id") Long id) {
-        return new ResponseEntity<Activity>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
+    //edit activity
+    @PutMapping("/edits/{id}")
+    public ResponseEntity<Activity> updateActivity(@PathVariable("id") Long id, @RequestBody Activity activity){
+        Activity updateActivity = activityService.updateActivity(id, activity);
+        return new ResponseEntity<>(updateActivity, HttpStatus.OK);
     }
+
+
 
     //Delete an activity
     @DeleteMapping("/activities/{id}")

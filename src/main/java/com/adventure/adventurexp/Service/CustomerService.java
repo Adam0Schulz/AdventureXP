@@ -40,4 +40,9 @@ public class CustomerService {
     public void deleteCustomer(Long id)  {
         customerRepo.deleteById(id);
     }
+    //find customer by keyword
+    public Customer findByKeyword(String keyword) {
+        return customerRepo.findByKeyword(keyword);
+    }
+
 }

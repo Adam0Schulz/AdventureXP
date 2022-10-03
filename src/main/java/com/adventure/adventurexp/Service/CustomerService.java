@@ -21,4 +21,8 @@ public class CustomerService {
         List<Customer> customersList = customerRepo.findAll();
         return customersList;
     }
+    //get customer by id
+    public Customer getCustomerById(Long id) {
+        return customerRepo.findById(id).get();
+    }
 }

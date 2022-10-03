@@ -25,4 +25,19 @@ public class CustomerService {
     public Customer getCustomerById(Long id) {
         return customerRepo.findById(id).get();
     }
+
+    public Customer createCustomer(Customer customer) { return customerRepo.save(customer);
+    }
+
+    public Customer updateCustomer(Long id, Customer newCustomer){
+        if(customerRepo.findById(id).isEmpty()){
+               return null;
+        }
+        return customerRepo.save(newCustomer);
+    }
+
+
+    public void deleteCustomer(Long id)  {
+        customerRepo.deleteById(id);
+    }
 }

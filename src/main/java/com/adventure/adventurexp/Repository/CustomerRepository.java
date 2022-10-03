@@ -1,4 +1,10 @@
 package com.adventure.adventurexp.Repository;
 
-public interface CustomerRepository {
+import com.adventure.adventurexp.Entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+    Long countById(Long id);
 }
+

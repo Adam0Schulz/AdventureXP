@@ -1,7 +1,11 @@
 package com.adventure.adventurexp.Common;
 
 import com.adventure.adventurexp.Entity.Activity;
+import com.adventure.adventurexp.Entity.Customer;
+import com.adventure.adventurexp.Entity.Instructor;
 import com.adventure.adventurexp.Repository.ActivityRepository;
+import com.adventure.adventurexp.Repository.CustomerRepository;
+import com.adventure.adventurexp.Repository.InstructorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +13,15 @@ import org.springframework.stereotype.Component;
 public class InitialData implements CommandLineRunner {
 
     ActivityRepository activityRepository;
+    CustomerRepository customerRepository;
+    InstructorRepository instructorRepository;
 
-    public InitialData(ActivityRepository activityRepository) {
+    public InitialData(ActivityRepository activityRepository, CustomerRepository customerRepository, InstructorRepository instructorRepository) {
         this.activityRepository = activityRepository;
+        this.customerRepository = customerRepository;
+        this.instructorRepository = instructorRepository;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -29,5 +38,20 @@ public class InitialData implements CommandLineRunner {
         activityRepository.save(paintBall);
         activityRepository.save(beachVolleyball);
         activityRepository.save(drivingRangeGolf);
+//creat customers
+        Customer customer1 = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
+        Customer customer2 = new Customer("soheil", "fattah", "jhjh@dk.dk","199345678");
+        Customer customer3 = new Customer("emie", "jensen", "jhjhfd@hgh.dk","76765678");
+        customerRepository.save(customer1);
+        customerRepository.save(customer2);
+        customerRepository.save(customer3);
+
+        Instructor instructor1 = new Instructor("sofie", "jensen");
+        Instructor instructor2 = new Instructor("lio", "jensen");
+
+        instructorRepository.save(instructor1);
+        instructorRepository.save(instructor2);
+
+
     }
 }

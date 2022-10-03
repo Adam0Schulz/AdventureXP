@@ -6,17 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "activty")
+@Table(name = "activity")
 public class Activity {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
         @Column
@@ -29,4 +30,7 @@ public class Activity {
             this.name=name;
             this.description=description;
         }
+
+        @OneToMany(mappedBy = "activity")
+        private List<Booking> booking;
 }

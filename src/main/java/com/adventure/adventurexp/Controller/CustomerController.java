@@ -22,16 +22,16 @@ public class CustomerController {
     }
     //return all customers
     @GetMapping("/customers")
-    public List<Customer> getAllCustomers(){
+    public List<Customer> getAllCustomers()
+    {
         return customerService.getAllCustomers();
     }
+
+    //return customer by id
     @GetMapping("/customers/{id}")
-public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id){
+    public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id)
+    {
     Customer customer = customerService.getCustomerById(id);
     return new ResponseEntity<>(customer, HttpStatus.OK);
-}
-
-
-
-
+    }
 }

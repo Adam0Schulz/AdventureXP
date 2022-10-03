@@ -42,12 +42,19 @@ public class InitialData implements CommandLineRunner {
         Customer customer1 = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
         Customer customer2 = new Customer("soheil", "fattah", "jhjh@dk.dk","199345678");
         Customer customer3 = new Customer("emie", "jensen", "jhjhfd@hgh.dk","76765678");
+        Customer customer4 = new Customer("jens", "jensen", "hggh@gmail.com","15678");
+        Customer customer5 = new Customer("adam", "jensen", "jh@kea.dk","44655678");
+        Customer customer6 = new Customer("tilo", "jensen", "gf@gmail.com","1234568");
         customerRepository.save(customer1);
         customerRepository.save(customer2);
         customerRepository.save(customer3);
+        customerRepository.save(customer4);
+        customerRepository.save(customer5);
+        customerRepository.save(customer6);
 
         Instructor instructor1 = new Instructor("sofie", "jensen");
         Instructor instructor2 = new Instructor("lio", "jensen");
+
 
         instructorRepository.save(instructor1);
         instructorRepository.save(instructor2);

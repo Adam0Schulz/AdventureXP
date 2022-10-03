@@ -1,18 +1,32 @@
 package com.adventure.adventurexp.Common;
 
 import com.adventure.adventurexp.Entity.Activity;
+import com.adventure.adventurexp.Entity.Instructor;
 import com.adventure.adventurexp.Repository.ActivityRepository;
+import com.adventure.adventurexp.Repository.InstructorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class InitialData implements CommandLineRunner {
 
+    //here i autowired with a field as "Class doesnt contain matching constructor for autowiring" error
+
+    @Autowired
     ActivityRepository activityRepository;
 
-    public InitialData(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
+//    public InitialData(ActivityRepository activityRepository) {
+//        this.activityRepository = activityRepository;
+//    }
+
+    @Autowired
+    InstructorRepository instructorRepository;
+
+//    @Autowired
+//    public InitialData(InstructorRepository instructorRepository) {
+//        this.instructorRepository = instructorRepository;
+//    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -29,5 +43,9 @@ public class InitialData implements CommandLineRunner {
         activityRepository.save(paintBall);
         activityRepository.save(beachVolleyball);
         activityRepository.save(drivingRangeGolf);
+
+        Instructor instructor = new Instructor("Jakub", "Patelski");
+        instructorRepository.save(instructor);
+
     }
 }

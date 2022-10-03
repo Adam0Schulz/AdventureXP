@@ -13,20 +13,20 @@ public class InitialData implements CommandLineRunner {
 
     //here i autowired with a field as "Class doesnt contain matching constructor for autowiring" error
 
-    @Autowired
+
     ActivityRepository activityRepository;
 
-//    public InitialData(ActivityRepository activityRepository) {
-//        this.activityRepository = activityRepository;
-//    }
 
-    @Autowired
+
+
     InstructorRepository instructorRepository;
 
-//    @Autowired
-//    public InitialData(InstructorRepository instructorRepository) {
-//        this.instructorRepository = instructorRepository;
-//    }
+
+    public InitialData(ActivityRepository activityRepository, InstructorRepository instructorRepository) {
+        this.activityRepository = activityRepository;
+        this.instructorRepository = instructorRepository;
+
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -46,6 +46,8 @@ public class InitialData implements CommandLineRunner {
 
         Instructor instructor = new Instructor("Jakub", "Patelski");
         instructorRepository.save(instructor);
+        Instructor instructor2 = new Instructor("Mikel", "Brown");
+        instructorRepository.save(instructor2);
 
     }
 }

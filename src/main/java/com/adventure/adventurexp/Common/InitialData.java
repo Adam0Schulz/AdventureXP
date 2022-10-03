@@ -34,7 +34,7 @@ public class InitialData implements CommandLineRunner {
         activityRepository.save(paintBall);
         activityRepository.save(beachVolleyball);
         activityRepository.save(drivingRangeGolf);
-
+//creat customers
         Customer customer1 = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
         Customer customer2 = new Customer("soheil", "fattah", "jhjh@dk.dk","199345678");
         Customer customer3 = new Customer("emie", "jensen", "jhjhfd@hgh.dk","76765678");

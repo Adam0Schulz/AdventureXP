@@ -6,6 +6,7 @@ import com.adventure.adventurexp.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -41,8 +42,11 @@ public class CustomerService {
         customerRepo.deleteById(id);
     }
     //find customer by keyword
-    public Customer findByKeyword(String keyword) {
-        return customerRepo.findByKeyword(keyword);
+    public List <Customer> findByKeyword(String keyword) {
+        if (keyword != null) {
+            return customerRepo.findByKeyword(keyword);
+        }
+        return customerRepo.findAll();
     }
 
 }

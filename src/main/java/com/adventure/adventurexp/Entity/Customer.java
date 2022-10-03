@@ -3,6 +3,7 @@ package com.adventure.adventurexp.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String firstname;
     @Column

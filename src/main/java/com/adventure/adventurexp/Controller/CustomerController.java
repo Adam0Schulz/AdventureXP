@@ -46,15 +46,11 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    //find by keyword
-    @PostMapping("/customers/search/{keyword}")
-    public ResponseEntity<Customer> findByKeyword(@PathVariable("keyword") String keyword){
-        Customer customer = customerService.findByKeyword(keyword);
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+    //find by keyword and put it in list of customers
+    @GetMapping("/customers/search/{keyword}")
+    public List<Customer> findByKeyword(@PathVariable("keyword") String keyword){
+        return customerService.findByKeyword(keyword);
     }
-
-
-
 
 
 

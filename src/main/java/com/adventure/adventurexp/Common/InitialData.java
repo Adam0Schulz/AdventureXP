@@ -12,24 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitialData implements CommandLineRunner {
 
-<<<<<<< HEAD
-    //here i autowired with a field as "Class doesnt contain matching constructor for autowiring" error
-
-
-    ActivityRepository activityRepository;
-
-
-
-
-    InstructorRepository instructorRepository;
-
-
-    public InitialData(ActivityRepository activityRepository, InstructorRepository instructorRepository) {
-        this.activityRepository = activityRepository;
-        this.instructorRepository = instructorRepository;
-
-    }
-=======
     ActivityRepository activityRepository;
     CustomerRepository customerRepository;
     InstructorRepository instructorRepository;
@@ -40,7 +22,6 @@ public class InitialData implements CommandLineRunner {
         this.instructorRepository = instructorRepository;
     }
 
->>>>>>> origin/master
 
     @Override
     public void run(String... args) throws Exception {
@@ -70,14 +51,6 @@ public class InitialData implements CommandLineRunner {
 
         instructorRepository.save(instructor1);
         instructorRepository.save(instructor2);
-
-<<<<<<< HEAD
-        Instructor instructor = new Instructor("Jakub", "Patelski");
-        instructorRepository.save(instructor);
-        Instructor instructor2 = new Instructor("Mikel", "Brown");
-        instructorRepository.save(instructor2);
-=======
->>>>>>> origin/master
 
     }
 }

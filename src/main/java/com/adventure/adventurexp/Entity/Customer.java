@@ -29,6 +29,11 @@ public class Customer {
     @Column
     private String phone;
 
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Set<Booking> bookings = new HashSet<>();
+
     public Customer(String firstname, String lastname, String email, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -36,8 +41,5 @@ public class Customer {
         this.phone = phone;
     }
 
-    @OneToMany
-    @JoinColumn(name = "customer_id")
-    @JsonBackReference
-    private Set<Customer> customers = new HashSet<>();
+
 }

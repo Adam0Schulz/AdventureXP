@@ -35,7 +35,4 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-
-
 }

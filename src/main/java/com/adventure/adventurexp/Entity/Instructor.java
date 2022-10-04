@@ -19,8 +19,10 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String firstName;
 
+    @Column
     private String lastName;
 
     public Instructor(String firstName, String lastName) {

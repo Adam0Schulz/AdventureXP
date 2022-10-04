@@ -1,13 +1,17 @@
 package com.adventure.adventurexp.Common;
 
 import com.adventure.adventurexp.Entity.Activity;
+import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Entity.Customer;
 import com.adventure.adventurexp.Entity.Instructor;
 import com.adventure.adventurexp.Repository.ActivityRepository;
+import com.adventure.adventurexp.Repository.BookingRepository;
 import com.adventure.adventurexp.Repository.CustomerRepository;
 import com.adventure.adventurexp.Repository.InstructorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 public class InitialData implements CommandLineRunner {
@@ -15,11 +19,13 @@ public class InitialData implements CommandLineRunner {
     ActivityRepository activityRepository;
     CustomerRepository customerRepository;
     InstructorRepository instructorRepository;
+    BookingRepository bookingRepository;
 
-    public InitialData(ActivityRepository activityRepository, CustomerRepository customerRepository, InstructorRepository instructorRepository) {
+    public InitialData(ActivityRepository activityRepository, CustomerRepository customerRepository, InstructorRepository instructorRepository, BookingRepository bookingRepository) {
         this.activityRepository = activityRepository;
         this.customerRepository = customerRepository;
         this.instructorRepository = instructorRepository;
+        this.bookingRepository = bookingRepository;
     }
 
 
@@ -38,7 +44,8 @@ public class InitialData implements CommandLineRunner {
         activityRepository.save(paintBall);
         activityRepository.save(beachVolleyball);
         activityRepository.save(drivingRangeGolf);
-//creat customers
+
+        //creat customers
         Customer customer1 = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
         Customer customer2 = new Customer("soheil", "fattah", "jhjh@dk.dk","199345678");
         Customer customer3 = new Customer("emie", "jensen", "jhjhfd@hgh.dk","76765678");
@@ -51,6 +58,12 @@ public class InitialData implements CommandLineRunner {
 
         instructorRepository.save(instructor1);
         instructorRepository.save(instructor2);
+
+        Booking booking = new Booking();
+        booking.setActivity(goKart);
+        booking.setStartDate(new Date());
+        booking.setEndDate(new Date());
+        bookingRepository.save(booking);
 
 
     }

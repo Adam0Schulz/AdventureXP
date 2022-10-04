@@ -64,7 +64,5 @@ public class InitialData implements CommandLineRunner {
         booking.setStartDate(new Date());
         booking.setEndDate(new Date());
         bookingRepository.save(booking);
-
-
     }
 }

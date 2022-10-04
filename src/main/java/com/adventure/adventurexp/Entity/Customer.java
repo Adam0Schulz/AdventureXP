@@ -29,12 +29,15 @@ public class Customer {
     @Column
     private String phone;
 
-    public Customer( String firstname, String lastname, String email, String phone) {
-
+    public Customer(String firstname, String lastname, String email, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phone = phone;
     }
 
-    }
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Set<Customer> customers = new HashSet<>();
+}

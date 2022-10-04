@@ -28,16 +28,17 @@ public class Activity {
         @Column(length = 6000)
         private String description;
 
-        public Activity(String name, String description){
-            this.name=name;
-            this.description=description;
-        }
+        @OneToOne
+        @JoinColumn(name = "instructor_id")
+        private Instructor instructor;
 
         @OneToMany
         @JoinColumn(name = "activity_id")
         @JsonBackReference
         private Set<Booking> bookings = new HashSet<>();
 
-
-
+        public Activity(String name, String description){
+                this.name=name;
+                this.description=description;
+        }
 }

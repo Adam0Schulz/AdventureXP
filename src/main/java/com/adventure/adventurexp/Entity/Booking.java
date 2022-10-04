@@ -25,8 +25,17 @@ public class Booking {
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
+    @Column
+    private int numberOfParticipants;
+
     @ManyToOne
     @JoinColumn(name = "activity_id")
     private Activity activity;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+
 
 }

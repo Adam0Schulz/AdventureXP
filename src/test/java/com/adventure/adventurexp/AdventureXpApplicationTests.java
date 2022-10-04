@@ -21,7 +21,7 @@ class AdventureXpApplicationTests {
 
     @Test
     void createActivities(){
-        Activity paintball = new Activity("Paintball","It's a  very funny activity. I love paintball");
+        Activity paintball = new Activity("Paintball","It's a  very funny activity. I love paintball", "paintball.jpg");
         activityRepository.save(paintball);
     }
 

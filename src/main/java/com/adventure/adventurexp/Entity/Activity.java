@@ -25,8 +25,12 @@ public class Activity {
         @Column(length = 6000)
         private String description;
 
-        public Activity(String name, String description){
+        @Column
+        private String imageName;
+
+        public Activity(String name, String description, String imageName){
             this.name=name;
             this.description=description;
+            this.imageName=imageName;
         }
 }

@@ -37,4 +37,9 @@ public class Customer {
         this.phone = phone;
     }
 
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Set<Customer> customers = new HashSet<>();
+
     }

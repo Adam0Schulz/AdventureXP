@@ -63,8 +63,8 @@ public class InitialData implements CommandLineRunner {
         booking.setActivity(goKart);
         booking.setStartDate(new Date());
         booking.setEndDate(new Date());
+        booking.setCustomer(customer1);
         bookingRepository.save(booking);
-
 
     }
 }

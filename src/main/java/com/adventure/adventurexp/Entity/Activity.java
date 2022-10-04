@@ -37,8 +37,9 @@ public class Activity {
         @JsonBackReference
         private Set<Booking> bookings = new HashSet<>();
 
-        public Activity(String name, String description){
+        public Activity(String name, String description, Instructor instructor){
                 this.name=name;
                 this.description=description;
+                this.instructor = instructor;
         }
 }

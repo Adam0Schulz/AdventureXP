@@ -1,9 +1,11 @@
 package com.adventure.adventurexp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,7 +20,6 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
     private String firstname;
     @Column
@@ -28,11 +29,17 @@ public class Customer {
     @Column
     private String phone;
 
-    public Customer( String firstname, String lastname, String email, String phone) {
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Set<Booking> bookings = new HashSet<>();
 
+    public Customer(String firstname, String lastname, String email, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phone = phone;
     }
+
+
 }

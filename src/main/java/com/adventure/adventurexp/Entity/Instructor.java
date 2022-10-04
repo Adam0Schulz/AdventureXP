@@ -19,9 +19,14 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String firstName;
 
+    @Column
     private String lastName;
+
+    @OneToOne(mappedBy = "instructor")
+    private Activity activity;
 
     public Instructor(String firstName, String lastName) {
         this.firstName = firstName;

@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @DataJpaTest
 class AdventureXpApplicationTests {
 
-
     @Autowired
     InstructorRepository instructorRepository;
 

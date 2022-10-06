@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -59,5 +60,16 @@ public class BookingController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/bookings/search/{date}")
+    public List<Booking> searchForDate(@PathVariable ("date") String name) {
+        List<Booking> bookingList = bookingService.getAllBookings();
 
+        for (Booking booking: bookingList
+             ) {
+            if (!name.equals(booking.getActivity().getName())) {
+                bookingList.remove(booking);
+            }
+        }
+        return bookingList;
+    }
 }

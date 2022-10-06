@@ -24,7 +24,7 @@ public class InstructorService {
     }
 
     public Instructor getInstructorById(Long id) {
-        return instructorRepository.findById(id).get();
+        return instructorRepository.findById(id).orElse(null);
     }
 
     public Instructor createInstructor(Instructor instructor) {

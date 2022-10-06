@@ -34,6 +34,7 @@ public class Activity {
 
         @OneToMany
         @JoinColumn(name = "activity_id")
+        @JsonBackReference
         private Set<Booking> bookings = new HashSet<>();
 
         public Activity(String name, String description, Instructor instructor){

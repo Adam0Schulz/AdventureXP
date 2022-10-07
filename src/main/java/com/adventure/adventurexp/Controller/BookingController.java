@@ -55,7 +55,19 @@ public class BookingController
     @PutMapping("/bookings/{id}")
     public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking, @PathVariable("id") Long id)
     {
-        return new ResponseEntity<Booking>(bookingService.updateBooking(id, booking), HttpStatus.OK);
+        //cheack activity is available
+        if(bookingService.checkActivityIsAvailable(booking.getActivity().getId(), booking.getDate(), booking.getStartTime(), booking.getEndTime()))
+        {
+            return new ResponseEntity<Booking>(bookingService.updateBooking(id, booking), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+
+
+
 }
 
 

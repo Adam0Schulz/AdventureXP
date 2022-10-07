@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookingService
@@ -58,16 +58,22 @@ public class BookingService
     }
 
     //RETURN ALL BOOKINGS BY ACTIVITY ID
-    public List<Booking> checkActivityIsAvailable(Long bookingId) {
-        //find all same registration plate and cheack if the date is colliding
-        List<Booking> bookings = bookingRepository.findAll();
-        Booking bookingchosen = bookingRepository.getBookingById(bookingId);
-        for (Booking b : bookings) {
-            if (b.getActivity().getId().equals(bookingchosen.getActivity().getId())) {
-                return bookingRepository.findAllByActivityId(bookingchosen.getActivity().getId());
-
+    public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime)
+    {
+        List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
+        List<Booking> availableBookings = new ArrayList<>();
+        for (Booking booking : bookings)
+        {
+            if (booking.getDate().equals(date))
+            {
+                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
+                {
+                    availableBookings.add(booking);
+                }
             }
         }
-        return null;
+        return availableBookings.isEmpty();
     }
-    }
+
+
+}

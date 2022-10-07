@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 //@Component
 public class InitialData implements CommandLineRunner {
@@ -76,11 +75,19 @@ public class InitialData implements CommandLineRunner {
         customerRepository.save(customer3);
 
         //Create Booking objects
-        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 10), LocalTime.of(5,30), LocalTime.of(7,30), 4, customer1);
-        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 12), LocalTime.of(3,0), LocalTime.of(5,30), 4, customer1);
+        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 10), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer1);
+        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 12), LocalTime.of(13,0), LocalTime.of(15,0), 4, customer1);
+        Booking booking3 = new Booking(sumoWrestling, LocalDate.of(2022, 10, 16), LocalTime.of(10,0), LocalTime.of(11,0), 2, customer2);
+        Booking booking4 = new Booking(miniGolf, LocalDate.of(2022, 10, 18), LocalTime.of(14,30), LocalTime.of(16,30), 3, customer2);
+        Booking booking5 = new Booking(paintBall, LocalDate.of(2022, 10, 20), LocalTime.of(11,20), LocalTime.of(13,20), 6, customer3);
+        Booking booking6 = new Booking(paintBall, LocalDate.of(2022, 10, 20), LocalTime.of(15,0), LocalTime.of(18,0), 8, customer1);
 
         //Save Booking objects into database
         bookingRepository.save(booking1);
         bookingRepository.save(booking2);
+        bookingRepository.save(booking3);
+        bookingRepository.save(booking4);
+        bookingRepository.save(booking5);
+        bookingRepository.save(booking6);
     }
 }

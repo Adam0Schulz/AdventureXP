@@ -24,14 +24,16 @@ class BookingServiceTest {
     private BookingRepository bookingRepository;
 
     private BookingService bookingService;
+    private ActivityService activityService;
 
     private long id;
 
     private Booking booking;
+    private Long activityId;
 
     @BeforeEach
     void setUp() {
-        bookingService = new BookingService(bookingRepository);
+        bookingService = new BookingService(bookingRepository, activityService);
         id = 10L;
         Instructor instructor = new Instructor("Ricky", "Raceman");
         Customer customer = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
@@ -59,7 +61,7 @@ class BookingServiceTest {
     @Test
     void canCreateBooking() {
         //when
-        bookingService.createBooking(booking);
+        bookingService.createBooking(booking, activityId);
         //then
         ArgumentCaptor<Booking> bookingArgumentCaptor = ArgumentCaptor.forClass(Booking.class);
         verify(bookingRepository).save(bookingArgumentCaptor.capture());

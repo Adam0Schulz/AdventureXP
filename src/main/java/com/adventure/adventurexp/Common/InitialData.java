@@ -1,13 +1,7 @@
 package com.adventure.adventurexp.Common;
 
-import com.adventure.adventurexp.Entity.Activity;
-import com.adventure.adventurexp.Entity.Booking;
-import com.adventure.adventurexp.Entity.Customer;
-import com.adventure.adventurexp.Entity.Instructor;
-import com.adventure.adventurexp.Repository.ActivityRepository;
-import com.adventure.adventurexp.Repository.BookingRepository;
-import com.adventure.adventurexp.Repository.CustomerRepository;
-import com.adventure.adventurexp.Repository.InstructorRepository;
+import com.adventure.adventurexp.Entity.*;
+import com.adventure.adventurexp.Repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,15 +16,29 @@ public class InitialData implements CommandLineRunner {
     InstructorRepository instructorRepository;
     BookingRepository bookingRepository;
 
-    public InitialData(ActivityRepository activityRepository, CustomerRepository customerRepository, InstructorRepository instructorRepository, BookingRepository bookingRepository) {
+    CandyRepository candyRepository;
+
+    public InitialData(ActivityRepository activityRepository, CustomerRepository customerRepository, InstructorRepository instructorRepository, BookingRepository bookingRepository, CandyRepository candyRepository) {
         this.activityRepository = activityRepository;
         this.customerRepository = customerRepository;
         this.instructorRepository = instructorRepository;
         this.bookingRepository = bookingRepository;
+        this.candyRepository = candyRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        Candy candy1 = new Candy("Sour sam", 12.50);
+        Candy candy2 = new Candy("Choco Corny", 9.0);
+        Candy candy3 = new Candy("Coconut Corny", 9.0);
+        Candy candy4 = new Candy("Famous Amos", 15.00);
+        Candy candy5 = new Candy("Nutty Tony", 6.50);
+
+        candyRepository.save(candy1);
+        candyRepository.save(candy2);
+        candyRepository.save(candy3);
+        candyRepository.save(candy4);
+        candyRepository.save(candy5);
 
         //Create Instructor objects
         Instructor instructor1 = new Instructor("Ricky", "Raceman");

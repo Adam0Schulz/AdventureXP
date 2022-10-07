@@ -28,7 +28,7 @@ public class CustomerService {
 
     //get customer by id
     public Customer getCustomerById(Long id) {
-        return customerRepo.findById(id).get();
+        return customerRepo.findById(id).orElse(null);
     }
 
     public Customer createCustomer(Customer customer)

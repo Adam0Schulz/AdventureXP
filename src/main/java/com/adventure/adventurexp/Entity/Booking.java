@@ -31,10 +31,12 @@ public class Booking {
     @Column
     //LocalTimeFormat: LocalTime.of(5,30)
     private LocalTime startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     @Column
     //LocalTimeFormat: LocalTime.of(7,30)
     private LocalTime endTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     @Column
     private int numberOfParticipants;

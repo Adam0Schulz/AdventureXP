@@ -5,7 +5,10 @@ import com.adventure.adventurexp.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService
@@ -32,7 +35,9 @@ public class BookingService
 
     //Add a booking
     public Booking createBooking(Booking booking)
+
     {
+
         return bookingRepository.save(booking);
     }
 
@@ -51,4 +56,18 @@ public class BookingService
         }
         return bookingRepository.save(booking);
     }
-}
+
+    //RETURN ALL BOOKINGS BY ACTIVITY ID
+    public List<Booking> checkActivityIsAvailable(Long bookingId) {
+        //find all same registration plate and cheack if the date is colliding
+        List<Booking> bookings = bookingRepository.findAll();
+        Booking bookingchosen = bookingRepository.getBookingById(bookingId);
+        for (Booking b : bookings) {
+            if (b.getActivity().getId().equals(bookingchosen.getActivity().getId())) {
+                return bookingRepository.findAllByActivityId(bookingchosen.getActivity().getId());
+
+            }
+        }
+        return null;
+    }
+    }

@@ -40,16 +40,24 @@ public class BookingController
     @PostMapping("/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking)
     {
-        Booking newBooking = bookingService.createBooking(booking);
-        return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
-    }
+
+
+            Booking newBooking = bookingService.createBooking(booking);
+            return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
+
+        }
+
+
+
+
 
     //Update Booking
     @PutMapping("/bookings/{id}")
     public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking, @PathVariable("id") Long id)
     {
         return new ResponseEntity<Booking>(bookingService.updateBooking(id, booking), HttpStatus.OK);
-    }
+}
+
 
     //Delete Booking
     @DeleteMapping("/bookings/{id}")

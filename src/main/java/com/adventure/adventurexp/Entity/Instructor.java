@@ -28,10 +28,8 @@ public class Instructor {
     @Column
     private String lastName;
 
-    @OneToMany
-    @JoinColumn(name = "instructor_id")
-    @JsonBackReference
-    private Set<Booking> bookings = new HashSet<>();
+
+
 
     public Instructor(String firstName, String lastName) {
         this.firstName = firstName;

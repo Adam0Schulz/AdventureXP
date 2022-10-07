@@ -19,11 +19,7 @@ class AdventureXpApplicationTests {
     }
 
 
-    @Test
-    void createActivities(){
-        Activity paintball = new Activity("Paintball","It's a  very funny activity. I love paintball");
-        activityRepository.save(paintball);
-    }
+
 
 
 }

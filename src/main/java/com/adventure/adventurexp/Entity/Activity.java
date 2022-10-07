@@ -1,11 +1,14 @@
 package com.adventure.adventurexp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,9 +31,19 @@ public class Activity {
         @Column
         private String imageName;
 
-        public Activity(String name, String description, String imageName){
-            this.name=name;
-            this.description=description;
-            this.imageName=imageName;
+        @OneToOne
+        @JoinColumn(name = "instructor_id")
+        private Instructor instructor;
+
+        @OneToMany
+        @JoinColumn(name = "activity_id")
+        @JsonBackReference
+        private Set<Booking> bookings = new HashSet<>();
+
+        public Activity(String name, String description, String imageName, Instructor instructor){
+                this.name=name;
+                this.description=description;
+                this.imageName=imageName;
+                this.instructor = instructor;
         }
 }

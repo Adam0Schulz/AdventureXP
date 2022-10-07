@@ -32,4 +32,12 @@ class AdventureXpApplicationTests {
 
     private final BookingRepository bookingRepository;
 
+    @Test
+    void createActivities(){
+        Instructor instructor = new Instructor("Ricky", "Raceman");
+        Activity paintBall = new Activity("Paintball","Two teams will go against each other. The purpose is to shoot the opposing team with paint balls until only members from one team is left. Age limit: 18+.", instructor, "paintball.jpg");
+        activityRepository.save(paintBall);
+    }
+
+
 }

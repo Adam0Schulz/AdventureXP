@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "activty")
+@Table(name = "activity")
 public class Activity {
 
         @Id
@@ -40,10 +40,10 @@ public class Activity {
         @JsonBackReference
         private Set<Booking> bookings = new HashSet<>();
 
-        public Activity(String name, String description, String imageName, Instructor instructor){
+        public Activity(String name, String description, Instructor instructor, String imageName){
                 this.name=name;
                 this.description=description;
-                this.imageName=imageName;
                 this.instructor = instructor;
+                this.imageName=imageName;
         }
 }

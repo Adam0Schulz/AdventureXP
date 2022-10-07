@@ -5,6 +5,7 @@ import com.adventure.adventurexp.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -27,12 +28,14 @@ public class BookingService
     // Find booking by id
     public Booking getBookingsById(Long id)
     {
-        return bookingRepository.findById(id).get();
+        return bookingRepository.findById(id).orElse(null);
     }
 
     //Add a booking
     public Booking createBooking(Booking booking)
     {
+        if(booking.getStartTime().isBefore(LocalTime.of(7,0))
+                || booking.getEndTime().isAfter(LocalTime.of(15,0))) return null;
         return bookingRepository.save(booking);
     }
 

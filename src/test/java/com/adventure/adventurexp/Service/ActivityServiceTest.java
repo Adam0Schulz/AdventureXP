@@ -31,7 +31,8 @@ class ActivityServiceTest {
         activity = new Activity("Gokart",
                 "In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. " +
                         "Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.",
-                new Instructor("Tom","Thomson")
+                new Instructor("Tom","Thomson"),
+                "gokart.jpg"
         );
         id = 10L;
     }

@@ -29,7 +29,7 @@ public class Customer {
     @Column
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "customer_id")
     @JsonBackReference
     private Set<Booking> bookings = new HashSet<>();

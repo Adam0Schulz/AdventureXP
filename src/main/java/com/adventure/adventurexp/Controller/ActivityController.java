@@ -1,6 +1,7 @@
 package com.adventure.adventurexp.Controller;
 
 import com.adventure.adventurexp.Entity.Activity;
+import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,12 @@ public class ActivityController {
         return new ResponseEntity<>(activity, HttpStatus.OK);
     }
 
-    //Create a activity
+    @GetMapping("/activities/{id}/bookings")
+    public List<Booking> getBookingsByActivity(@PathVariable("id") Long id) {
+        return activityService.getActivityById(id).getBookings().stream().toList();
+    }
+
+    //Create an activity
     @PostMapping("/activities")
     public ResponseEntity<Activity> createActivity(@RequestBody Activity activity){
         Activity newActivity = activityService.createActivity(activity);
@@ -44,7 +50,7 @@ public class ActivityController {
     //Update an activity
     @PutMapping("/activities/{id}")
     public ResponseEntity<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable("id") Long id) {
-        return new ResponseEntity<Activity>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
+        return new ResponseEntity<>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
     }
 
     //Delete an activity

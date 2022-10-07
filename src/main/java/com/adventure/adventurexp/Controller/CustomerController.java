@@ -35,10 +35,10 @@ public class CustomerController {
 
     //Create customer
     @PostMapping("/customers")
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer)
+    public Customer createCustomer(@RequestBody Customer customer)
     {
         Customer newCustomer = customerService.createCustomer(customer);
-        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
+        return newCustomer;
     }
 }
 

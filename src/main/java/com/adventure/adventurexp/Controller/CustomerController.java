@@ -1,14 +1,12 @@
 package com.adventure.adventurexp.Controller;
 
+import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Entity.Customer;
 import com.adventure.adventurexp.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +32,14 @@ public class CustomerController {
     Customer customer = customerService.getCustomerById(id);
     return new ResponseEntity<>(customer, HttpStatus.OK);
     }
+
+    //Create customer
+    @PostMapping("/customers")
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer)
+    {
+        Customer newCustomer = customerService.createCustomer(customer);
+        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
+    }
 }
+
+

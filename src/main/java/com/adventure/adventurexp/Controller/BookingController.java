@@ -1,5 +1,6 @@
 package com.adventure.adventurexp.Controller;
 
+import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,9 @@ public class BookingController
 
     //Create booking
     @PostMapping("/bookings")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking)
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking, @RequestParam(name = "activityId") Long activityId)
     {
-        Booking newBooking = bookingService.createBooking(booking);
+        Booking newBooking = bookingService.createBooking(booking, activityId);
         return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
     }
 

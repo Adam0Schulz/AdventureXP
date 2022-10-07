@@ -25,9 +25,6 @@ public class Instructor {
     @Column
     private String lastName;
 
-    @OneToOne(mappedBy = "instructor")
-    private Activity activity;
-
     public Instructor(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -28,7 +28,7 @@ public class BookingService
     // Find booking by id
     public Booking getBookingsById(Long id)
     {
-        return bookingRepository.findById(id).get();
+        return bookingRepository.findById(id).orElse(null);
     }
 
     //Add a booking

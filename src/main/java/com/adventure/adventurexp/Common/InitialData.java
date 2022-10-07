@@ -76,8 +76,8 @@ public class InitialData implements CommandLineRunner {
         customerRepository.save(customer3);
 
         //Create Booking objects
-        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 10), LocalTime.of(5,30), LocalTime.of(7,30), 4, customer1);
-        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 12), LocalTime.of(3,0), LocalTime.of(5,30), 4, customer1);
+        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 10), LocalTime.of(8,30), LocalTime.of(9,30), 4, customer1);
+        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 12), LocalTime.of(7,0), LocalTime.of(8,30), 4, customer2);
 
         //Save Booking objects into database
         bookingRepository.save(booking1);

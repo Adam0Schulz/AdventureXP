@@ -11,6 +11,7 @@ import com.adventure.adventurexp.Repository.InstructorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -30,6 +31,7 @@ public class InitialData implements CommandLineRunner {
     }
 
     @Override
+
     public void run(String... args) throws Exception {
 
         //Create Instructor objects

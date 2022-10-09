@@ -5,6 +5,7 @@ import com.adventure.adventurexp.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class BookingService
         bookingRepository.deleteById(id);
     }
 
+
     //Update booking
     public Booking updateBooking(Long id, Booking booking)
     {
@@ -58,6 +60,7 @@ public class BookingService
     }
 
     //RETURN ALL BOOKINGS BY ACTIVITY ID
+@Transactional
     public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime)
     {
         List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
@@ -69,11 +72,27 @@ public class BookingService
                 if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
                 {
                     availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
                 }
+                else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime))
+                {
+                    availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
+                }
+                else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime))
+                {
+                    availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
+                }
+
+
+
             }
+
         }
-        return availableBookings.isEmpty();
+        return true;
     }
+
 
 
 }

@@ -35,7 +35,7 @@ class BookingServiceTest {
         id = 10L;
         Instructor instructor = new Instructor("Ricky", "Raceman");
         Customer customer = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
-        Activity activity = new Activity("Gokart","In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.", instructor);
+        Activity activity = new Activity("Gokart","In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.", instructor, "gokart.jpg");
         booking = new Booking(activity, LocalDate.of(2022, 10, 10), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer);
 
     }

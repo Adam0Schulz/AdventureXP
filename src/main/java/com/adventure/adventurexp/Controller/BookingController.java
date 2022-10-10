@@ -56,13 +56,13 @@ public class BookingController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //Get list of booking by date (Format: 2022,10,10)
+    //Get list of booking by date (Format: 2022-10-10)
     @GetMapping("/bookings/search/{date}")
     public List<Booking> searchForDate(@PathVariable("date") String date) {
         List<Booking> bookingList = bookingService.getAllBookings();
         List<Booking> searchedBookings = new ArrayList<>();
 
-        String[] result = date.split(",");
+        String[] result = date.split("-");
         int year = Integer.parseInt(result[0]);
         int month = Integer.parseInt(result[1]);
         int day = Integer.parseInt(result[2]);

@@ -50,13 +50,11 @@ public class BookingService
 
 
     //Update booking
-    public Booking updateBooking(Long id, Booking booking)
-    {
-        if (bookingRepository.findById(id).isEmpty())
-        {
+    public Booking updateBooking(Long id, Booking newBooking) {
+        if (bookingRepository.findById(id).isEmpty()) {
             return null;
         }
-        return bookingRepository.save(booking);
+        return bookingRepository.save(newBooking);
     }
 
     //RETURN ALL BOOKINGS BY ACTIVITY ID

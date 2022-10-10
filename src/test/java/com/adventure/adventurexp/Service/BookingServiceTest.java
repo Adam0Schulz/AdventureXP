@@ -10,10 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.verify;
@@ -34,10 +36,9 @@ class BookingServiceTest {
         bookingService = new BookingService(bookingRepository);
         id = 10L;
         Instructor instructor = new Instructor("Ricky", "Raceman");
-        Customer customer = new Customer("John", "Doe", "ghgh@jhdhj.dk","12345678");
-        Activity activity = new Activity("Gokart","In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.", instructor, "gokart.jpg");
-        booking = new Booking(activity, LocalDate.of(2022, 10, 10), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer);
-
+        Customer customer = new Customer("John", "Doe", "ghgh@jhdhj.dk", "12345678");
+        Activity activity = new Activity("Gokart", "In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.", instructor, "gokart.jpg");
+        booking = new Booking(activity, LocalDate.of(2022, 10, 10), LocalTime.of(15, 30), LocalTime.of(17, 30), 4, customer);
     }
 
     @Test
@@ -77,9 +78,27 @@ class BookingServiceTest {
 
     @Test
     void canUpdateBooking() {
-        //when
-        Booking updatedBooking = bookingService.updateBooking(id,booking);
-        //then
-        assertThat(updatedBooking).isNotEqualTo(booking);
+        //given - precondition or setup
+        booking.getCustomer().setFirstname("Erika");
+        booking.setDate(LocalDate.of(2026, 12, 12));
+
+        Mockito.when(bookingRepository.findById(id)).thenReturn(Optional.ofNullable(booking));
+        Mockito.when(bookingRepository.save(booking)).thenReturn(booking);
+
+        //when -  action or the behaviour that we are going test
+        Booking updatedBooking = bookingService.updateBooking(id, booking);
+
+        //then - verify the output
+        assertThat(updatedBooking.getCustomer().getFirstname()).isEqualTo("Erika");
+        assertThat(updatedBooking.getDate()).isEqualTo(LocalDate.of(2026, 12, 12));
+    }
+
+    @Test
+    void canUpdateActivityReturnNull() {
+        //when -  action or the behaviour that we are going test
+        Booking updatedBooking = bookingService.updateBooking(id, booking);
+
+        //then - verify the output
+        assertThat(updatedBooking).isNull();
     }
 }

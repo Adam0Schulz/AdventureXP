@@ -89,19 +89,52 @@ public class BookingService
         }
         return true;
     }
-//no booking in past date in Danish time
-
-    public boolean cheachTime(Booking booking) {
-        if (booking.getDate().isBefore(LocalDate.now()) || booking.getStartTime().isBefore(LocalTime.now())) {
+//no booking in past date in Danish time and local time
+    public boolean checkTime(Booking booking) {
+        LocalDate today = LocalDate.now();
+        LocalTime now = LocalTime.now();
+        if (booking.getDate().isBefore(today)) {
             throw new IllegalStateException("Date is in the past");
         }
+        if (booking.getDate().equals(today)) {
+            if (booking.getStartTime().isBefore(now)) {
+                throw new IllegalStateException("Time is in the past");
+            }
+        }
         return true;
-
     }
-    //no allowed to book activity in pasttime only present
 
+    //check activity is available with start date and end date and activity id
+    public boolean checkActivityIsAvailablePost(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime)
+    {
+        List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
+        List<Booking> availableBookings = new ArrayList<>();
+        for (Booking booking : bookings)
+        {
+            if (booking.getDate().equals(date) )
+            {
+                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
+                {
+                    availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
 
+                }
+                else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime))
+                {
+                    availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
+                }
+                else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime))
+                {
+                    availableBookings.add(booking);
+                    throw new IllegalStateException("Activity is not available");
+                }
 
+            }
+
+        }
+        return true;
+    }
     }
 
 

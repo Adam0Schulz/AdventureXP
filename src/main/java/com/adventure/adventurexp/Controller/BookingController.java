@@ -40,19 +40,22 @@ public class BookingController
     @PostMapping("/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking)
     {
-   //cheach whith cheachtime if the booking is possible
-if (bookingService.cheachTime(booking)){
-        {
+   //cheach whith cheachtime if the booking is possible or not
+
+if (bookingService.checkActivityIsAvailablePost(booking.getActivity().getId(),booking.getDate(),booking.getStartTime(),booking.getEndTime())
+        && bookingService.checkTime(booking)){
+
             Booking newBooking = bookingService.createBooking(booking);
             return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
+
+        }/**/
+        else {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        }
-       else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
 
-}
+
 
 
 
@@ -63,19 +66,21 @@ if (bookingService.cheachTime(booking)){
     public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking, @PathVariable("id") Long id)
     {
         //cheack activity is available
-        if(bookingService.checkActivityIsAvailable(booking.getActivity().getId(), booking.getDate(), booking.getStartTime(), booking.getEndTime()))
-        {
-            return new ResponseEntity<Booking>(bookingService.updateBooking(id, booking), HttpStatus.OK);
-        }
-        else
-        {
+        if(bookingService.checkActivityIsAvailable(booking.getActivity().getId(), booking.getDate(), booking.getStartTime(), booking.getEndTime())
+                && bookingService.checkTime(booking)){
+
+                return new ResponseEntity<Booking>(bookingService.updateBooking(id, booking), HttpStatus.OK);
+            }
+
+        else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
-
-
 }
+
+
+
+
+
 
 
     //Delete Booking

@@ -28,6 +28,9 @@ public class Activity {
         @Column(length = 6000)
         private String description;
 
+        @Column
+        private String imageName;
+
         @OneToOne
         @JoinColumn(name = "instructor_id")
         private Instructor instructor;
@@ -37,9 +40,10 @@ public class Activity {
         @JsonBackReference
         private Set<Booking> bookings = new HashSet<>();
 
-        public Activity(String name, String description, Instructor instructor){
+        public Activity(String name, String description, Instructor instructor, String imageName){
                 this.name=name;
                 this.description=description;
                 this.instructor = instructor;
+                this.imageName=imageName;
         }
 }

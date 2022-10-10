@@ -73,6 +73,7 @@ public class BookingService
                 {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
+
                 }
                 else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime))
                 {

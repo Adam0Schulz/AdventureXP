@@ -1,0 +1,7 @@
+netstat -ano | findstr :8080
+
+taskkill /PID <PID> /F
+
+for mac:
+
+ kill -9 $(lsof -i:8080 -t) 2> /dev/null

@@ -40,12 +40,19 @@ public class BookingController
     @PostMapping("/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking)
     {
-
-
+   //cheach whith cheachtime if the booking is possible
+if (bookingService.cheachTime(booking)){
+        {
             Booking newBooking = bookingService.createBooking(booking);
             return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
-
         }
+        }
+       else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+
+}
 
 
 

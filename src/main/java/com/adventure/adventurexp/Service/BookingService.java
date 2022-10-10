@@ -67,7 +67,7 @@ public class BookingService
         List<Booking> availableBookings = new ArrayList<>();
         for (Booking booking : bookings)
         {
-            if (booking.getDate().equals(date))
+            if (booking.getDate().equals(date) )
             {
                 if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
                 {
@@ -86,14 +86,31 @@ public class BookingService
                     throw new IllegalStateException("Activity is not available");
                 }
 
-
-
             }
 
         }
         return true;
     }
+//no booking in past date in Danish time
+
+    public boolean cheachTime(Booking booking) {
+        if (booking.getDate().isBefore(LocalDate.now()) || booking.getStartTime().isBefore(LocalTime.now())) {
+            throw new IllegalStateException("Date is in the past");
+        }
+        return true;
+
+    }
+    //no allowed to book activity in pasttime only present
 
 
 
-}
+    }
+
+
+
+
+
+
+
+
+

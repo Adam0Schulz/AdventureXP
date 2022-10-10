@@ -29,7 +29,7 @@ public class CandyController {
         return candyService.getAllCandy();
     }
 
-    //Create a method that returns a single activity
+    //Create a method that returns a sisngle activity
     @GetMapping("/candy/{id}")
     public ResponseEntity<Candy> getCandyById(@PathVariable("id") Long id){
         Candy candy = candyService.getCandyById(id);

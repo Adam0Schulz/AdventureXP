@@ -123,11 +123,10 @@ public class BookingService {
     }
 
     //Search bookings by date, used in BookingController
-    public List<Booking> searchBookings(String date) {
-        List<Booking> bookingList = getAllBookings();
+    public List<Booking> searchBookings(List<Booking> bookingList,String date) {
         List<Booking> searchedBookings = new ArrayList<>();
 
-        String[] result = date.split(",");
+        String[] result = date.split("-");
         int year = Integer.parseInt(result[0]);
         int month = Integer.parseInt(result[1]);
         int day = Integer.parseInt(result[2]);

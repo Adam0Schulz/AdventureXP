@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.verify;
@@ -31,7 +34,7 @@ class ActivityServiceTest {
         activity = new Activity("Gokart",
                 "In go-karting, the participants drive around a course racing the be the first one across the finish line after 20 laps. " +
                         "Points are given based on placement. The participant with the fastest lap will receive 5 bonus points. Age limit: 16+.",
-                new Instructor("Tom","Thomson"),
+                new Instructor("Tom", "Thomson"),
                 "gokart.jpg"
         );
         id = 10L;
@@ -80,14 +83,23 @@ class ActivityServiceTest {
         //given - precondition or setup
         activity.setName("Parachuting");
         activity.setDescription("Safety is not guaranteed!");
+        Mockito.when(activityRepository.findById(id)).thenReturn(Optional.ofNullable(activity));
+        Mockito.when(activityRepository.save(activity)).thenReturn(activity);
 
         //when -  action or the behaviour that we are going test
         Activity updatedActivity = activityService.updateActivity(id, activity);
 
         //then - verify the output
-        assertThat(updatedActivity).isNotEqualTo(activity);
+        assertThat(updatedActivity.getName()).isEqualTo("Parachuting");
+        assertThat(updatedActivity.getDescription()).isEqualTo("Safety is not guaranteed!");
+    }
 
-       //assertThat(updatedActivity.getName()).isEqualTo("Parachuting");
-       //assertThat(updatedActivity.getDescription()).isEqualTo("Safety is not guaranteed!");
+    @Test
+    void canUpdateActivityReturnNull() {
+        //when -  action or the behaviour that we are going test
+        Activity updatedActivity = activityService.updateActivity(id, activity);
+
+        //then - verify the output
+        assertThat(updatedActivity).isNull();
     }
 }

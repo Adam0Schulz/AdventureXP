@@ -1,38 +1,32 @@
 package com.adventure.adventurexp.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "instructor")
-public class Instructor {
+@Table(name = "candy")
+public class Candy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String firstName;
+    private String name;
 
     @Column
-    private String lastName;
+    private double price;
 
-
-
-
-    public Instructor(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Candy(String name, double price) {
+        this.name = name;
+        this.price = price;
     }
 }

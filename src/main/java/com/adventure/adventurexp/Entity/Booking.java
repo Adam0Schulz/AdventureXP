@@ -25,16 +25,24 @@ public class Booking {
     private Activity activity;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     //LocalDateFormat: LocalDate.of(2022, 10, 10)
     private LocalDate date;
+    //data format
+
+
 
     @Column
+    @DateTimeFormat(pattern = "HH:mm:ss")
     //LocalTimeFormat: LocalTime.of(5,30)
     private LocalTime startTime;
 
+
     @Column
+    @DateTimeFormat(pattern = "HH:mm:ss")
     //LocalTimeFormat: LocalTime.of(7,30)
     private LocalTime endTime;
+
 
     @Column
     private int numberOfParticipants;

@@ -46,7 +46,7 @@ public class BookingController
         {
             //cheach whith cheachtime if the booking is possible or not
 
-            if (bookingService.checkActivityIsAvailablePost(booking.getActivity().getId(), booking.getDate(), booking.getStartTime(), booking.getEndTime())
+            if (bookingService.checkActivityIsAvailablePost(activityId, booking.getDate(), booking.getStartTime(), booking.getEndTime())
                     && bookingService.checkTime(booking))
             {
 
@@ -87,7 +87,6 @@ public class BookingController
         //Get list of booking by date (Format: 2022-10-10)
         @GetMapping("/bookings/search/{date}")
         public List<Booking> searchForDate (@PathVariable("date") String date){
-
-        return bookingService.searchBookings(date);
+            return bookingService.searchBookings(bookingService.getAllBookings(), date);
     }
 }

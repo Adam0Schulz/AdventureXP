@@ -1,5 +1,6 @@
 package com.adventure.adventurexp.Controller;
 
+import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Customer;
 import com.adventure.adventurexp.Service.CustomerService;
@@ -23,12 +24,15 @@ public class CustomerController {
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
+
+    //return customer by id
     @GetMapping("/customers/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id){
     Customer customer = customerService.getCustomerById(id);
     return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
+    //Create customer
     @PostMapping("/customers")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
         Customer newCustomer = customerService.createCustomer(customer);
@@ -55,3 +59,5 @@ public class CustomerController {
 
 
 }
+
+

@@ -1,6 +1,7 @@
 package com.adventure.adventurexp.Service;
 
 import com.adventure.adventurexp.Entity.Activity;
+import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Entity.Customer;
 import com.adventure.adventurexp.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;

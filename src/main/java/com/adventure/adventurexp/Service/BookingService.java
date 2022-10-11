@@ -1,5 +1,6 @@
 package com.adventure.adventurexp.Service;
 
+import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,13 @@ import java.util.List;
 @Service
 public class BookingService {
     private final BookingRepository bookingRepository;
+    private final ActivityService activityService;
 
     @Autowired
-    public BookingService(BookingRepository bookingRepository) {
+    public BookingService(BookingRepository bookingRepository, ActivityService activityService)
+    {
         this.bookingRepository = bookingRepository;
+        this.activityService = activityService;
     }
 
     // Find all bookings
@@ -31,8 +35,12 @@ public class BookingService {
     }
 
     //Add a booking
-    public Booking createBooking(Booking booking) {
-
+    public Booking createBooking(Booking booking, Long activityId)
+    {
+        Activity activity = activityService.getActivityById(activityId);
+        booking.setActivity(activity);
+        if(booking.getStartTime().isBefore(LocalTime.of(7,0))
+                || booking.getEndTime().isAfter(LocalTime.of(15,0))) return null;
         return bookingRepository.save(booking);
     }
 

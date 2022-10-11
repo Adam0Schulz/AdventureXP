@@ -5,9 +5,9 @@ import com.adventure.adventurexp.Repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 //@Component
 public class InitialData implements CommandLineRunner {
@@ -28,6 +28,7 @@ public class InitialData implements CommandLineRunner {
     }
 
     @Override
+
     public void run(String... args) throws Exception {
         Candy candy1 = new Candy("Sour sam", 12.50);
         Candy candy2 = new Candy("Choco Corny", 9.0);

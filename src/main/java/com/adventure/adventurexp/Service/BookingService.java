@@ -12,39 +12,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BookingService
-{
+public class BookingService {
     private final BookingRepository bookingRepository;
 
     @Autowired
-    public BookingService(BookingRepository bookingRepository)
-    {
+    public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 
     // Find all bookings
-    public List<Booking> getAllBookings()
-    {
+    public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
 
     // Find booking by id
-    public Booking getBookingsById(Long id)
-    {
+    public Booking getBookingsById(Long id) {
         return bookingRepository.findById(id).get();
     }
 
     //Add a booking
-    public Booking createBooking(Booking booking)
-
-    {
+    public Booking createBooking(Booking booking) {
 
         return bookingRepository.save(booking);
     }
 
     //Delete booking
-    public void deleteBooking(Long id)
-    {
+    public void deleteBooking(Long id) {
         bookingRepository.deleteById(id);
     }
 
@@ -58,28 +51,20 @@ public class BookingService
     }
 
     //RETURN ALL BOOKINGS BY ACTIVITY ID
-@Transactional
-    public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime)
-    {
+    @Transactional
+    public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime) {
         List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
         List<Booking> availableBookings = new ArrayList<>();
-        for (Booking booking : bookings)
-        {
-            if (booking.getDate().equals(date) )
-            {
-                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
-                {
+        for (Booking booking : bookings) {
+            if (booking.getDate().equals(date)) {
+                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
 
-                }
-                else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime))
-                {
+                } else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
-                }
-                else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime))
-                {
+                } else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
                 }
@@ -89,7 +74,8 @@ public class BookingService
         }
         return true;
     }
-//no booking in past date in Danish time and local time
+
+    //no booking in past date in Danish time and local time
     public boolean checkTime(Booking booking) {
         LocalDate today = LocalDate.now();
         LocalTime now = LocalTime.now();
@@ -105,27 +91,19 @@ public class BookingService
     }
 
     //check activity is available with start date and end date and activity id
-    public boolean checkActivityIsAvailablePost(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime)
-    {
+    public boolean checkActivityIsAvailablePost(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime) {
         List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
         List<Booking> availableBookings = new ArrayList<>();
-        for (Booking booking : bookings)
-        {
-            if (booking.getDate().equals(date) )
-            {
-                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime))
-                {
+        for (Booking booking : bookings) {
+            if (booking.getDate().equals(date)) {
+                if (booking.getStartTime().equals(startTime) || booking.getEndTime().equals(endTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
 
-                }
-                else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime))
-                {
+                } else if (booking.getStartTime().isBefore(startTime) && booking.getEndTime().isAfter(startTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
-                }
-                else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime))
-                {
+                } else if (booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(endTime)) {
                     availableBookings.add(booking);
                     throw new IllegalStateException("Activity is not available");
                 }
@@ -135,13 +113,25 @@ public class BookingService
         }
         return true;
     }
+
+    //Search bookings by date, used in BookingController
+    public List<Booking> searchBookings(String date) {
+        List<Booking> bookingList = getAllBookings();
+        List<Booking> searchedBookings = new ArrayList<>();
+
+        String[] result = date.split(",");
+        int year = Integer.parseInt(result[0]);
+        int month = Integer.parseInt(result[1]);
+        int day = Integer.parseInt(result[2]);
+
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        for (Booking booking : bookingList
+        ) {
+            if (booking.getDate().isEqual(localDate)) {
+                searchedBookings.add(booking);
+            }
+        }
+        return searchedBookings;
     }
-
-
-
-
-
-
-
-
-
+}

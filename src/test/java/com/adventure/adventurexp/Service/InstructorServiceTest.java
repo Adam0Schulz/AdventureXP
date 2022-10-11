@@ -1,5 +1,6 @@
 package com.adventure.adventurexp.Service;
 
+import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Entity.Instructor;
 import com.adventure.adventurexp.Repository.InstructorRepository;
@@ -8,7 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.in;
@@ -62,9 +66,27 @@ class InstructorServiceTest {
     }
 
     @Test
-    void updateInstructor() {
+    void canupdateInstructor() {
+        //given - precondition or setup
+        instructor.setFirstName("Tibor");
+        instructor.setLastName("Hun");
+        Mockito.when(instructorRepository.findById(id)).thenReturn(Optional.ofNullable(instructor));
+        Mockito.when(instructorRepository.save(instructor)).thenReturn(instructor);
+
+        //when -  action or the behaviour that we are going test
+        Instructor updatedInstructor = instructorService.updateInstructor(id, instructor);
+
+        //then - verify the output
+        assertThat(updatedInstructor.getFirstName()).isEqualTo("Tibor");
+        assertThat(updatedInstructor.getLastName()).isEqualTo("Hun");
+    }
+
+    @Test
+    void canUpdateActivityReturnNull() {
+        //when -  action or the behaviour that we are going test
         Instructor updatedInstructor = instructorService.updateInstructor(id,instructor);
 
-        assertThat(updatedInstructor).isNotEqualTo(instructor);
+        //then - verify the output
+        assertThat(updatedInstructor).isNull();
     }
 }

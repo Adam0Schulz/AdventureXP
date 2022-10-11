@@ -32,12 +32,6 @@ public class CustomerService {
         return customerRepo.findById(id).orElse(null);
     }
 
-    public Customer createCustomer(Customer customer)
-    {
-        return customerRepo.save(customer);
-    }
-}
-
     public Customer createCustomer(Customer customer) { return customerRepo.save(customer);
     }
 

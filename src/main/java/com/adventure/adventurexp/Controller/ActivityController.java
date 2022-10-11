@@ -3,11 +3,14 @@ package com.adventure.adventurexp.Controller;
 import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Booking;
 import com.adventure.adventurexp.Service.ActivityService;
+import com.adventure.adventurexp.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,9 +20,12 @@ public class ActivityController {
     //Dependencies
     private final ActivityService activityService;
 
+    private final BookingService bookingService;
+
     @Autowired
-    public ActivityController(ActivityService activityService) {
+    public ActivityController(ActivityService activityService, BookingService bookingService) {
         this.activityService = activityService;
+        this.bookingService = bookingService;
     }
 
     //Return all activities
@@ -36,8 +42,19 @@ public class ActivityController {
     }
 
     @GetMapping("/activities/{id}/bookings")
-    public List<Booking> getBookingsByActivity(@PathVariable("id") Long id) {
+    /*public List<Booking> getBookingsByActivity(@PathVariable("id") Long id) {
         return activityService.getActivityById(id).getBookings().stream().toList();
+    }
+
+    @GetMapping("/activities/{id}/bookings")*/
+    public List<Booking> getBookingsByActivity(@PathVariable("id") Long id, @RequestParam(name = "date") String date) {
+        return bookingService.searchBookings(
+                activityService
+                        .getActivityById(id)
+                        .getBookings()
+                        .stream().toList(),
+                date
+        );
     }
 
     //Create an activity

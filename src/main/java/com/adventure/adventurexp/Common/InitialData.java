@@ -5,9 +5,9 @@ import com.adventure.adventurexp.Repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Component
 public class InitialData implements CommandLineRunner {
@@ -28,6 +28,7 @@ public class InitialData implements CommandLineRunner {
     }
 
     @Override
+
     public void run(String... args) throws Exception {
         Candy candy1 = new Candy("Sour sam", 12.50);
         Candy candy2 = new Candy("Choco Corny", 9.0);
@@ -84,12 +85,18 @@ public class InitialData implements CommandLineRunner {
         customerRepository.save(customer3);
 
         //Create Booking objects
-        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 10), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer1);
-        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 12), LocalTime.of(13,0), LocalTime.of(15,0), 4, customer1);
-        Booking booking3 = new Booking(sumoWrestling, LocalDate.of(2022, 10, 16), LocalTime.of(10,0), LocalTime.of(11,0), 2, customer2);
+        Booking booking1 = new Booking(goKart, LocalDate.of(2022, 10, 6), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer1);
+        Booking booking2 = new Booking(goKart, LocalDate.of(2022, 10, 7), LocalTime.of(13,0), LocalTime.of(15,0), 4, customer1);
+        Booking booking3 = new Booking(sumoWrestling, LocalDate.of(2022, 10, 6), LocalTime.of(10,0), LocalTime.of(11,0), 2, customer2);
         Booking booking4 = new Booking(miniGolf, LocalDate.of(2022, 10, 18), LocalTime.of(14,30), LocalTime.of(16,30), 3, customer2);
         Booking booking5 = new Booking(paintBall, LocalDate.of(2022, 10, 20), LocalTime.of(11,20), LocalTime.of(13,20), 6, customer3);
         Booking booking6 = new Booking(paintBall, LocalDate.of(2022, 10, 20), LocalTime.of(15,0), LocalTime.of(18,0), 8, customer1);
+        Booking booking7 = new Booking(goKart, LocalDate.of(2022, 10, 8), LocalTime.of(15,30), LocalTime.of(17,30), 4, customer1);
+        Booking booking8 = new Booking(goKart, LocalDate.of(2022, 10, 8), LocalTime.of(13,0), LocalTime.of(15,0), 4, customer1);
+        Booking booking9 = new Booking(sumoWrestling, LocalDate.of(2022, 10, 16), LocalTime.of(10,0), LocalTime.of(11,0), 2, customer2);
+        Booking booking10 = new Booking(miniGolf, LocalDate.of(2022, 10, 5), LocalTime.of(14,30), LocalTime.of(16,30), 3, customer2);
+        Booking booking11 = new Booking(paintBall, LocalDate.of(2022, 10, 11), LocalTime.of(11,20), LocalTime.of(13,20), 6, customer3);
+        Booking booking12 = new Booking(paintBall, LocalDate.of(2022, 10, 12), LocalTime.of(15,0), LocalTime.of(18,0), 8, customer1);
 
         //Save Booking objects into database
         bookingRepository.save(booking1);

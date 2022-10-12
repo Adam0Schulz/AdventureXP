@@ -47,7 +47,7 @@ public class Booking {
     @Column
     private int numberOfParticipants;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

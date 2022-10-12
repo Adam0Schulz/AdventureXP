@@ -40,8 +40,8 @@ public class BookingService {
     {
         Activity activity = activityService.getActivityById(activityId);
         booking.setActivity(activity);
-        if(booking.getStartTime().isBefore(LocalTime.of(7,0))
-                || booking.getEndTime().isAfter(LocalTime.of(15,0))) return null;
+        if(booking.getStartTime().isBefore(LocalTime.of(10,0))
+                || booking.getEndTime().isAfter(LocalTime.of(22,0))) return null;
         return bookingRepository.save(booking);
     }
 

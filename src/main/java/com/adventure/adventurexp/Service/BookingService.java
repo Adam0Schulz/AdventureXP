@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookingService {
@@ -39,8 +40,8 @@ public class BookingService {
     {
         Activity activity = activityService.getActivityById(activityId);
         booking.setActivity(activity);
-        if(booking.getStartTime().isBefore(LocalTime.of(7,0))
-                || booking.getEndTime().isAfter(LocalTime.of(15,0))) return null;
+        if(booking.getStartTime().isBefore(LocalTime.of(10,0))
+                || booking.getEndTime().isAfter(LocalTime.of(22,0))) return null;
         return bookingRepository.save(booking);
     }
 
@@ -60,8 +61,9 @@ public class BookingService {
 
     //RETURN ALL BOOKINGS BY ACTIVITY ID
     @Transactional
-    public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public boolean checkActivityIsAvailable(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime, Long id) {
         List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);
+        bookings = bookings.stream().filter(item -> item.getId() != id).collect(Collectors.toList());
         List<Booking> availableBookings = new ArrayList<>();
         for (Booking booking : bookings) {
             if (booking.getDate().equals(date)) {

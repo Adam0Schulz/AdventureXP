@@ -84,7 +84,7 @@ public class BookingService {
         }
         return true;
     }
-
+    @Transactional
     //no booking in past date in Danish time and local time
     public boolean checkTime(Booking booking) {
         LocalDate today = LocalDate.now();
@@ -99,7 +99,7 @@ public class BookingService {
         }
         return true;
     }
-
+    @Transactional
     //check activity is available with start date and end date and activity id
     public boolean checkActivityIsAvailablePost(Long activityId, LocalDate date, LocalTime startTime, LocalTime endTime) {
         List<Booking> bookings = bookingRepository.findAllByActivityId(activityId);

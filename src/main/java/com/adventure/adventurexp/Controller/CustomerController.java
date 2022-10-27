@@ -24,6 +24,10 @@ public class CustomerController {
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
+    @GetMapping("/customers/search")
+    public List<Customer> getAllCustomers2(){
+        return customerService.getAllCustomers();
+    }
 
     //return customer by id
     @GetMapping("/customers/{id}")

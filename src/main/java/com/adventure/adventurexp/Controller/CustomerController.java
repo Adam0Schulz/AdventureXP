@@ -45,8 +45,13 @@ public class CustomerController {
 
     @PutMapping("/customers/{id}")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer newCustomer, @PathVariable("id")Long id){
-        return new ResponseEntity<Customer>(customerService.updateCustomer(id, newCustomer),
-                HttpStatus.OK);
+        if(id==null || id<=0 || newCustomer==null || newCustomer.getId()==null ){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        else{
+            Customer customer = customerService.updateCustomer(id, newCustomer);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/customers/{id}")

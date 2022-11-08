@@ -22,25 +22,24 @@ public class CustomerService {
 
 
     //get all customers
-    @Transactional
     public List<Customer> getAllCustomers() {
         List<Customer> customersList = customerRepo.findAll();
         return customersList;
     }
-    @Transactional
+
     public List<Customer> getAllCustomers2() {
         List<Customer> customersList = customerRepo.findAll();
         return customersList;
     }
-    @Transactional
+
     //get customer by id
     public Customer getCustomerById(Long id) {
         return customerRepo.findById(id).orElse(null);
     }
-    @Transactional
+
     public Customer createCustomer(Customer customer) { return customerRepo.save(customer);
     }
-    @Transactional
+
     public Customer updateCustomer(Long id, Customer newCustomer){
         if(customerRepo.findById(id).isEmpty()){
                return null;
@@ -48,7 +47,7 @@ public class CustomerService {
         return customerRepo.save(newCustomer);
     }
 
-    @Transactional
+
     public void deleteCustomer(Long id)  {
         customerRepo.deleteById(id);
     }

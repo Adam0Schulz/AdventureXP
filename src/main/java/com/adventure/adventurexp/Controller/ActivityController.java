@@ -2,6 +2,7 @@ package com.adventure.adventurexp.Controller;
 
 import com.adventure.adventurexp.Entity.Activity;
 import com.adventure.adventurexp.Entity.Booking;
+import com.adventure.adventurexp.Entity.Customer;
 import com.adventure.adventurexp.Service.ActivityService;
 import com.adventure.adventurexp.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +39,15 @@ public class ActivityController {
     @GetMapping("/activities/{id}")
     public ResponseEntity<Activity> getActivityById(@PathVariable("id") Long id){
         Activity activity = activityService.getActivityById(id);
-        return new ResponseEntity<>(activity, HttpStatus.OK);
+        return new ResponseEntity<>(activity, HttpStatus.OK);/**/
     }
 
-    @GetMapping("/activities/{id}/bookings")
-    /*public List<Booking> getBookingsByActivity(@PathVariable("id") Long id) {
+    /*@GetMapping("/activities/{id}/bookings")
+    public List<Booking> getBookingsByActivity(@PathVariable("id") Long id) {
         return activityService.getActivityById(id).getBookings().stream().toList();
     }
-
-    @GetMapping("/activities/{id}/bookings")*/
+*/
+    @GetMapping("/activities/{id}/bookings")
     public List<Booking> getBookingsByActivity(@PathVariable("id") Long id, @RequestParam(name = "date") String date) {
         return bookingService.searchBookings(
                 activityService
@@ -67,13 +68,33 @@ public class ActivityController {
     //Update an activity
     @PutMapping("/activities/{id}")
     public ResponseEntity<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable("id") Long id) {
-        return new ResponseEntity<>(activityService.updateActivity(id, newActivity), HttpStatus.OK);
+        //if activity not find return not found status
+        if (activityService.getActivityById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if(id==null || id<=0 || newActivity==null || newActivity.getId()==null ){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
+        else{
+            Activity activity = activityService.updateActivity( id, newActivity);
+            return new ResponseEntity<>(activity, HttpStatus.OK);
+        }
+
     }
+
 
     //Delete an activity
     @DeleteMapping("/activities/{id}")
     public ResponseEntity<?> deleteActivity(@PathVariable("id") Long id){
         activityService.deleteActivity(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/activities/search/{keyword}")
+    public List<Activity> findByKeyword(@PathVariable("keyword") String keyword){
+        if(keyword != null|| keyword != "" || keyword != " "){
+            return activityService.findByKeywordActivity(keyword);
+        }
+        return activityService.getAllActivities();
     }
 }

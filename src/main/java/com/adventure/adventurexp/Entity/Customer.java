@@ -29,6 +29,7 @@ public class Customer {
     @Column
     private String phone;
 
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     @JsonBackReference
@@ -39,6 +40,7 @@ public class Customer {
         this.lastname = lastname;
         this.email = email;
         this.phone = phone;
+
     }
 
 }

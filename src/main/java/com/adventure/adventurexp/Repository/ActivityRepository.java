@@ -12,6 +12,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
     @Query("SELECT a FROM Activity a WHERE a.name LIKE %?1% OR a.description LIKE %?1% OR a.imageName LIKE %?1%")
     List<Activity> findByKeywordActivity(String keyword);
+    //getimage
+
 
 }
 

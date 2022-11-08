@@ -97,4 +97,6 @@ public class ActivityController {
         }
         return activityService.getAllActivities();
     }
+
+
 }

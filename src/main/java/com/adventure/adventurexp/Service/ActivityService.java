@@ -54,3 +54,6 @@ public class ActivityService {
         return activityRepo.findAll();
     }
 }
+//get image name
+
+
